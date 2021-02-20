@@ -21,10 +21,18 @@ ENV OPENSSL_LIB_DIR=/usr/local/ssl/lib \
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- --default-toolchain nightly -y
 
-COPY solana-release-x86_64-unknown-linux-gnu.tar.bz2 solana-release-x86_64-unknown-linux-gnu.tar.bz2
-RUN tar jxf solana-release-x86_64-unknown-linux-gnu.tar.bz2
+# Change if want to copy solana as tar from parent instead of curling from release address
+# COPY solana-release-x86_64-unknown-linux-gnu.tar.bz2 solana-release-x86_64-unknown-linux-gnu.tar.bz2
+# RUN tar jxf solana-release-x86_64-unknown-linux-gnu.tar.bz2
+RUN sh -c "$(curl -sSfL https://release.solana.com/1.5.8/install)"
+# Pick one of installers however as of writing this found 1.5.8 as latest stable
+# RUN sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+# RUN sh -c "$(curl -sSfL https://release.solana.com/edge/install)"
 
-ENV PATH=$PWD/solana-release/bin:$PATH
+# path for curled solana
+ENV PATH=/root/.local/share/solana/install/active_release/bin:$PATH
+# path for targzipped solana
+# ENV PATH=$PWD/solana-release/bin:$PATH
 ENV PATH=/root/.cargo/bin:$PATH
 ENV USER root
 
