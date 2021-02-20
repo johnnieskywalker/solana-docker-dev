@@ -26,8 +26,11 @@ RUN tar jxf solana-release-x86_64-unknown-linux-gnu.tar.bz2
 
 ENV PATH=$PWD/solana-release/bin:$PATH
 ENV PATH=/root/.cargo/bin:$PATH
+ENV RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::message_processor=debug,solana_bpf_loader=debug,solana_rbpf=debug
 ENV USER root
 
 WORKDIR /source
+COPY example-helloworld example-helloworld
+EXPOSE 8899
 
 CMD ["bash"]
