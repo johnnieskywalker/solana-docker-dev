@@ -20,3 +20,7 @@ sudo docker build . -t solanacluster
 sudo docker save solanacluster:latest | gzip > solanacluster_latest.tar.gz
 ```
 
+## How to get tar.gz with solana?
+Unfortunately github don't allow such a big files so I was not able to push it here
+It was downloaded from : https://github.com/solana-labs/solana/releases/tag/v1.5.8
+Which I believe will be maintained by solana team for many years
